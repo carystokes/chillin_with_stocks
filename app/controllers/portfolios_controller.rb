@@ -5,8 +5,8 @@ class PortfoliosController < ApplicationController
 
   def show
     @portfolio = set_portfolio
-    @holding = Holding.new
-    @holdings = @portfolio.holdings
+    # @holding = Holding.new
+    # @holdings = @portfolio.holdings
   end
 
   def new
@@ -29,10 +29,8 @@ class PortfoliosController < ApplicationController
     if @portfolio.save
       redirect_to @portfolio, notice: 'Portfolio was successfully created.'
     else
-      if @portfolio.errors.any?
-        @warning = @portfolio.errors.full_messages.join(", ")
-        render :new
-      end
+      flash[:notice] = @portfolio.errors.full_messages.join(', ')
+      render 'new'
     end
   end
 

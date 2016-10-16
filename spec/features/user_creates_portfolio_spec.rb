@@ -7,7 +7,7 @@ feature 'User creates portfolio' do
       visit root_path
       user_sign_in(user)
 
-      click_link 'Add a Porfolio'
+      click_link 'Add a Portfolio'
 
       expect(current_path).to eq(new_portfolio_path)
     end
@@ -24,7 +24,7 @@ feature 'User creates portfolio' do
       fill_in 'Title', with: 'Title'
       click_button 'Create Portfolio'
 
-      expect(page).to have_content 'Portfolio added successfully'
+      expect(page).to have_content 'Portfolio was successfully created'
       expect(page).to have_content 'Title'
     end
 
