@@ -1,0 +1,21 @@
+<div class="user-show-page">
+  <h2>First Name: <%= @user.first_name %> </h2>
+  <h2>Last Name: <%= @user.last_name %> </h2>
+  <h2>Email: <%= @user.email %> </h2>
+
+  <div class="edit-and-delete row">
+    <% if @user == current_user %>
+      <%= button_to 'Edit', edit_user_path(@user), method: :get %>
+    <% end %>
+    <% if @user == current_user || current_user.try(:admin?) %>
+      <%= button_to 'Delete', @user, method: :delete, data: { confirm: 'You sure?' }  %>
+    <% end %>
+    <% if current_user.try(:admin?) %>
+       <% if @user.admin %>
+          <%= button_to "Remove Admin", @user, method: :patch, params: { admin: false } %>
+       <% else %>
+          <%= button_to "Create Admin", @user, method: :patch, params: { admin: true } %>
+       <% end %>
+    <% end %>
+  </div>
+</div>

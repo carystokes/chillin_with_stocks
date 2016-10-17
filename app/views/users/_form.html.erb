@@ -1,0 +1,12 @@
+<%= form_for @user do |f| %>
+  <%= f.label :first_name, "First name" %>
+  <%= f.text_field :first_name, placeholder: @user.first_name %>
+  <br>
+  <%= f.label :last_name, "Last name" %>
+  <%= f.text_field :last_name, placeholder: @user.last_name %>
+  <br>
+  <%= f.label :email, "Email" %>
+  <%= f.text_field :email, placeholder: @user.email %>
+  <br>
+  <%= f.submit "Save Changes" %>
+<% end %>

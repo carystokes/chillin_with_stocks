@@ -1,6 +1,10 @@
 class PortfoliosController < ApplicationController
   def index
-    @portfolios = Portfolio.all
+    @portfolios = []
+    if !current_user.nil?
+      @user = current_user
+      @portfolios = @user.portfolios
+    end
   end
 
   def show

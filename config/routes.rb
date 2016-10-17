@@ -3,12 +3,12 @@ Rails.application.routes.draw do
 
   root 'portfolios#index'
 
-  resources :portfolios do
+  resources :users
+  
+  resources :portfolios, only: [:index, :show, :new, :create, :destroy] do
     resources :holdings, only: [:index, :create]
   end
 
-  resources :users
-
   resources :holdings, only: [:edit, :update, :destroy]
-  
+
 end
