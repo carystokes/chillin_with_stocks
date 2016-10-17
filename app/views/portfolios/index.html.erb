@@ -1,15 +1,15 @@
 <h1>Your Portfolios</h1>
 
-<ul>
-  <% @portfolios.each do |portfolio| %>
-  <li> <%= link_to portfolio_show_path, portfolio.title  %> </li>
-  <% end %>
-</ul>
+<% if @portfolios.blank? %>
+  <h4>No portfolios found</h4>
+<% else %>
+  <ul>
+    <% @portfolios.each do |portfolio| %>
+    <li> <%= link_to "#{portfolio[:title]}", portfolio_path(portfolio[:id])  %> </li>
+    <% end %>
+  </ul>
+<% end %>
 
 <div>
   <%= link_to 'Add a Portfolio', new_portfolio_path %>
 </div>
-
-<% if @portfolios.blank? %>
-  <h4>No portfolios found</h4>
-<% end %>

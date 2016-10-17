@@ -1,1 +1,51 @@
 <h1><%= @portfolio.title %></h1>
+
+<table>
+  <tr>
+    <th>Symbol</th>
+    <th>Shares</th>
+    <th>Price</th>
+    <th>Value</th>
+  </tr>
+
+  <% total = 0 %>
+  <% @portfolio.holdings.each do |holding| %>
+    <tr>
+      <td><%= holding.symbol %></td>
+      <td><%= holding.number_shares %></td>
+      <td><%= holding.purchase_price %></td>
+      <td><%= holding.number_shares * holding.purchase_price %></td>
+      <% total += holding.number_shares * holding.purchase_price %>
+    </tr>
+  <% end %>
+
+  <tr>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+    <td><%= total %></td>
+  </tr>
+</table>
+
+<div id="add-holding">
+  <h3>Add a stock</h3>
+  <%= form_for [@portfolio, @holding], html: { id: "add-holding-form" } do |f| %>
+  <div class="row">
+    <div id= "symbol-form">
+      <%= f.label :symbol %>
+      <%= f.text_field :symbol %>
+    </div>
+    <div id= "shares-form">
+      <%= f.label :number_shares %>
+      <%= f.number_field :number_shares %>
+    </div>
+    <div id= "price-form">
+      <%= f.label :purchase_price %>
+      <%= f.number_field :purchase_price %>
+    </div>
+    <div>
+      <%= f.submit "Add holding" %>
+      <% end %>
+    </div>
+  </div>
+</div>

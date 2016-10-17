@@ -5,8 +5,8 @@ class PortfoliosController < ApplicationController
 
   def show
     @portfolio = set_portfolio
-    # @holding = Holding.new
-    # @holdings = @portfolio.holdings
+    @holdings = @portfolio.holdings
+    @holding = Holding.new
   end
 
   def new
@@ -14,6 +14,7 @@ class PortfoliosController < ApplicationController
       redirect_to portfolios_path, notice: "Please sign in"
     else
       @portfolio = Portfolio.new
+      @portfolio.user = current_user
     end
   end
 
@@ -55,6 +56,6 @@ class PortfoliosController < ApplicationController
     end
 
     def portfolio_params
-      params.require(:portfolio).permit(:title)
+      params.require(:portfolio).permit(:title, :cash, :id, :user_id)
     end
 end

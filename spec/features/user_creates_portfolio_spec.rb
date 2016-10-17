@@ -28,9 +28,21 @@ feature 'User creates portfolio' do
       expect(page).to have_content 'Title'
     end
 
+    scenario 'User successfully creates a portfolio with cash' do
+      user_sign_in(user)
+      visit new_portfolio_path
+      fill_in 'Title', with: 'Title'
+      fill_in 'Cash', with: 100000
+      click_button 'Create Portfolio'
+
+      expect(page).to have_content 'Portfolio was successfully created'
+      expect(page).to have_content 'Title'
+    end
+
     scenario 'User gets an error if they don\'t provide a title' do
       user_sign_in(user)
       visit new_portfolio_path
+      fill_in 'Cash', with: 100000
       click_button 'Create Portfolio'
 
       expect(page).to have_content('Title can\'t be blank')

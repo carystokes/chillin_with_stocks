@@ -11,13 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016141414) do
+ActiveRecord::Schema.define(version: 20161016233033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "holdings", force: :cascade do |t|
+    t.string  "symbol",         null: false
+    t.integer "number_shares"
+    t.decimal "purchase_price"
+    t.integer "portfolio_id",   null: false
+  end
+
   create_table "portfolios", force: :cascade do |t|
     t.text    "title",   null: false
+    t.decimal "cash"
     t.integer "user_id", null: false
   end
 
