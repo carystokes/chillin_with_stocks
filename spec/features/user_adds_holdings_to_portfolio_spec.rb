@@ -10,14 +10,13 @@ feature 'User creates portfolio' do
       fill_in 'Title', with: 'Title'
       click_button 'Create Portfolio'
 
-      fill_in 'Stock Symbol', with: 'GOOGL'
+      fill_in 'Symbol', with: 'GOOGL'
       fill_in 'Number shares', with: 100
-      fill_in 'Price per share', with: 800
-      fill_in 'Cash', with: 10000
+      fill_in 'Purchase price', with: 800
       click_button 'Add holding'
 
       expect(page).to have_content 'GOOGL'
-      expect(page).to have_content '90000'
+      expect(page).to have_content '80000'
     end
 
     scenario 'User successfully adds holding to portfolio without purchase data' do
@@ -25,8 +24,8 @@ feature 'User creates portfolio' do
       visit new_portfolio_path
       fill_in 'Title', with: 'Title'
       click_button 'Create Portfolio'
-      click_button 'Add a holding'
-      fill_in 'Stock Symbol', with: 'FB'
+      fill_in 'Symbol', with: 'FB'
+      click_button 'Add holding'
 
       expect(page).to have_content('FB')
     end

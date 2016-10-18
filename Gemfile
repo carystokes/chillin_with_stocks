@@ -12,6 +12,7 @@ gem 'mini_magick'
 gem 'fog-aws'
 gem 'json'
 gem 'font-awesome-sass'
+gem 'httparty'
 
 group :development, :test do
   gem 'capybara'

@@ -11,22 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016233033) do
+ActiveRecord::Schema.define(version: 20161018195625) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "holdings", force: :cascade do |t|
-    t.string  "symbol",         null: false
-    t.integer "number_shares"
-    t.decimal "purchase_price"
-    t.integer "portfolio_id",   null: false
+    t.string  "symbol",                       null: false
+    t.integer "number_shares",  default: 0
+    t.decimal "purchase_price", default: 0.0
+    t.integer "portfolio_id",                 null: false
+    t.decimal "price_close"
+    t.decimal "div_yield"
+    t.decimal "year_target"
+    t.decimal "year_high"
+    t.decimal "year_low"
+    t.text    "market_cap"
+    t.integer "avg_volume"
+    t.decimal "eps_current"
+    t.decimal "eps_next"
+    t.decimal "short_ratio"
   end
 
   create_table "portfolios", force: :cascade do |t|
-    t.text    "title",   null: false
-    t.decimal "cash"
-    t.integer "user_id", null: false
+    t.text    "title",                 null: false
+    t.decimal "cash",    default: 0.0
+    t.integer "user_id",               null: false
   end
 
   create_table "users", force: :cascade do |t|
