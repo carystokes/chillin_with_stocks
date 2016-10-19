@@ -21,10 +21,10 @@ class HoldingsController < ApplicationController
     if magnitude == "M"
       @holding.market_cap /= 1000
     end
-    @holding.avg_volume = data[9].to_i
     @holding.eps_current = data[6].to_f
     @holding.eps_next = data[7].to_f
     @holding.short_ratio = data[8].to_f
+    @holding.avg_volume = data[9].to_i
 
     user = current_user
     if user_signed_in?
