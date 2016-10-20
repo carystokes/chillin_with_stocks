@@ -1,59 +1,9 @@
 <h1><%= @portfolio.title %></h1>
 
-<table>
-  <tr>
-    <th>Symbol</th>
-    <th>Shares</th>
-    <th>Price</th>
-    <th>Value</th>
-  </tr>
+<div>
+  <%= react_component 'Portfolio', { data: @portfolio.holdings, portfolio: @portfolio } %>
+</div>
 
-  <% total = 0 %>
-  <% @portfolio.holdings.each do |holding| %>
-    <tr>
-      <td><%= link_to holding.symbol, holding %></td>
-      <td><%= holding.number_shares %></td>
-      <td><%= holding.price_close %></td>
-      <td><%= holding.number_shares * holding.price_close %></td>
-      <% total += holding.number_shares * holding.price_close %>
-    </tr>
-  <% end %>
-
-  <tr>
-    <td>Cash</td>
-    <td> </td>
-    <td> </td>
-    <td><%= @portfolio.cash %></td>
-    <% total += @portfolio.cash %>
-  </tr>
-
-  <tr>
-    <td> </td>
-    <td> </td>
-    <td> </td>
-    <td><%= total %></td>
-  </tr>
-</table>
-
-<div id="add-holding">
-  <h3>Add a stock</h3>
-  <%= form_for [@portfolio, @holding], html: { id: "add-holding-form" } do |f| %>
-  <div class="row">
-    <div id= "symbol-form">
-      <%= f.label :symbol %>
-      <%= f.text_field :symbol %>
-    </div>
-    <div id= "shares-form">
-      <%= f.label :number_shares %>
-      <%= f.number_field :number_shares %>
-    </div>
-    <div id= "price-form">
-      <%= f.label :purchase_price %>
-      <%= f.number_field :purchase_price %>
-    </div>
-    <div>
-      <%= f.submit "Add holding" %>
-      <% end %>
-    </div>
-  </div>
+<div>
+  <%= react_component 'AddStockForm', {portfolio_id: @portfolio.id} %>
 </div>

@@ -3,6 +3,7 @@ require 'httparty'
 require 'json'
 
 class HoldingsController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def create
     @portfolio = Portfolio.find(params[:portfolio_id])
