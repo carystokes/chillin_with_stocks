@@ -1,6 +1,53 @@
 // @import "*";
 @import "portfolio_show";
+@import "holding_show";
 
+#body {
+  background-color: lightgreen;
+  padding-top: 0px;
+}
+#container {
+  width: 80%;
+  margin: auto;
+  margin-top: 0px;
+  background-color: white;
+  padding: 0px;
+}
 ul {
   list-style: none;
+}
+#top-bar {
+  background-color: lightblue;
+  margin: 0px;
+  padding: 0px;
+  h1 {
+    font-family: Comic Sans MS;
+    color: #6530E5;
+  }
+}
+.sign-in {
+  display: inline-block;
+  padding: 0px;
+  margin: 0px;
+}
+.nav-link {
+  display: inline-block;
+  padding: 4px;
+  margin: 0px;
+  font-size: .8em;
+}
+#page-body {
+  margin: 40px;
+}
+.red {
+  background-color: red;
+  color: red;
+}
+.yellow {
+  background-color: yellow;
+  color: yellow;
+}
+.green {
+  background-color: green;
+  color: green;
 }

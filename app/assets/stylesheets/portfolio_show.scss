@@ -1,6 +1,29 @@
 table {
   display: inline-block;
+  margin: auto;
 }
-table, th, td {
-   border: 1px solid black;
+#portfolio-show-table {
+  border: 3px solid gray;
+  display: flex;
+  margin: auto;
+  th, td {
+    border: 1px solid black;
+    padding: 5px;
+  }
+}
+h1 {
+  text-align: center;
+  color: green;
+}
+#industry {
+  width: 16em;
+}
+.new_holding {
+  display: block;
+}
+#add-holding-form {
+  display: block;
+}
+.table-number {
+  text-align: right;
 }

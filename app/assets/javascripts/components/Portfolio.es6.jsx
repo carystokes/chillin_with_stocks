@@ -4,17 +4,23 @@ class HoldingsRow extends React.Component {
     let original_value = parseFloat(this.props.number_shares * this.props.purchase_price).toFixed(2);
     let holding_delta = parseFloat(value - original_value).toFixed(2);
     let symbol_url = "/holdings/" + this.props.id;
-    let edit_url = symbol_url + "/edit"
+    let delete_url = symbol_url
     return (
       <tr>
         <td><a href={symbol_url}>{this.props.symbol}</a></td>
-        <td>{this.props.number_shares}</td>
-        <td>{parseFloat(this.props.purchase_price).toFixed(2)}</td>
-        <td>{original_value}</td>
-        <td>{parseFloat(this.props.price_close).toFixed(2)}</td>
-        <td>{value}</td>
-        <td>{holding_delta}</td>
-        <td><a href={delete_url}>Delete</a></td>
+        <td className="table-number">{this.props.number_shares}</td>
+        <td className="table-number">${parseFloat(this.props.purchase_price).toFixed(2)}</td>
+        <td className="table-number">${original_value}</td>
+        <td className="table-number">${parseFloat(this.props.price_close).toFixed(2)}</td>
+        <td className="table-number">${value}</td>
+        <td className="table-number">${holding_delta}</td>
+        <td>
+          <form className="button_to" method="post" action={delete_url}>
+            <input type="hidden" name="_method" value="delete" />
+            <input data-confirm="You sure?" type="submit" value="Delete Holding" />
+            <input type="hidden" />
+          </form>
+        </td>
       </tr>
     );
   }
@@ -30,7 +36,7 @@ class Portfolio extends React.Component {
       delta += (this.props.data[i].price_close - this.props.data[i].purchase_price) * this.props.data[i].number_shares;
     }
     return (
-      <table>
+      <table className="table table-responsive table-striped" id="portfolio-show-table">
         <tbody>
           <tr>
             <th>Symbol</th>
@@ -40,7 +46,7 @@ class Portfolio extends React.Component {
             <th>Price</th>
             <th>Value</th>
             <th>Gain/Loss</th>
-            <th>Edit</th>
+            <th>Delete</th>
           </tr>
           {this.props.data.map(function (holding) {
             return(
@@ -57,9 +63,9 @@ class Portfolio extends React.Component {
             <td> </td>
             <td> </td>
             <td> </td>
-            <td>{cash}</td>
+            <td className="table-number">${cash}</td>
             <td> </td>
-            <td><a href=cash_url>Edit</a></td>
+            <td> </td>
           </tr>
 
           <tr>
@@ -68,8 +74,9 @@ class Portfolio extends React.Component {
             <td> </td>
             <td> </td>
             <td> </td>
-            <td>{parseFloat(total).toFixed(2)}</td>
-            <td>{parseFloat(delta).toFixed(2)}</td>
+            <td className="table-number" >${parseFloat(total).toFixed(2)}</td>
+            <td className="table-number">${parseFloat(delta).toFixed(2)}</td>
+            <td> </td>
           </tr>
         </tbody>
       </table>

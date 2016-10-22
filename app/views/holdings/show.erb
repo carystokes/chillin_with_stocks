@@ -1,4 +1,26 @@
-<h1>Data for <%= @holding.symbol %></h1>
+<div class="row">
+  <div class="col-xs-12 col-sm-6">
+    <h2 id="holding-show-title"><%= @holding.symbol %> Chill Factor</h2>
+    <div>
+      <%= react_component 'Holding', { holding: @holding, performance: @performance } %>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <div class="row">
+      <div class="col-sm-12" id="chillin_symbol">
+        <h1><%= @holding.symbol %></h1>
+      </div>
+      <div class="col-sm-4 col-sm-push-4 <%= @holding.chill_color %>" id="chill-box">
+        <h1><%= @holding.symbol %></h1>
+        <p><%= @holding.chill_message %></p>
+      </div>
+      <div class="col-sm-12" id="chill_message">
+        <p><%= @holding.chill_message %></p>
+      </div>
+    </div>
+  </div>
+</div
+
 <ul>
   <li>Previous Closing Price: $<%= @holding.price_close %></li>
   <li>Dividend Yield: <%= @holding.div_yield %>%</li>

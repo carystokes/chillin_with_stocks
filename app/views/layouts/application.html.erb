@@ -1,31 +1,66 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>ChillinWithStocks</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <nav id = "top-bar" data-topbar role="navigation">
-     <ul class = "menu">
-      <li>
-        <div class="sign-in inline-block">
-          <% if user_signed_in? %>
-            <li><%= link_to "Log Off", destroy_user_session_path %></li>
-            <li><%= link_to "My Account", user_path(current_user) %></li>
-          <% else %>
-            <li><%= link_to "Sign Up", new_user_registration_path %></li>
-            <li><%= link_to "Log In", new_user_session_path %></li>
-          <% end %>
+
+<body id="body">
+  <div id="container">
+    <nav id = "top-bar" data-topbar role="navigation">
+      <div class="notice"><%= notice %></div>
+      <div class="alert"><%= alert %></div>
+      <h1>Chillin with Stocks</h1>
+      <ul class = "sign-in">
+        <% if user_signed_in? %>
+          <li class="nav-link"><%= link_to "My Portfolios", portfolios_path %></li>
+          <li class="nav-link"><%= link_to "My Account", user_path(current_user) %></li>
+          <li class="nav-link"><%= link_to "Log Off", destroy_user_session_path %></li>
+        <% else %>
+          <li class="nav-link"><%= link_to "Sign Up", new_user_registration_path %></li>
+          <li class="nav-link"><%= link_to "Log In", new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+    <div id="loginModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+      <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Login </h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-inline">
+              <div class="form-group">
+                <label class="sr-only" for="email">Email address</label>
+                <input type="email" class="form-control input-sm" id="email" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="password">Password</label>
+                <input type="password" class="form-control input-sm" id="password" placeholder="Password">
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox">Remember me
+                </label>
+              </div>
+              <button type="submit" class="btn btn-info btn-sm">Sign in</button>
+              <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+            </form>
+          </div>
         </div>
-      </li>
-    </ul>
-  </nav>
-
-<%= yield %>
-
+      </div>
+    </div>
+    <div id="page-body">
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>
