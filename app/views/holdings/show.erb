@@ -11,25 +11,15 @@
         <h1><%= @holding.symbol %></h1>
       </div>
       <div class="col-sm-4 col-sm-push-4 <%= @holding.chill_color %>" id="chill-box">
-        <h1><%= @holding.symbol %></h1>
-        <p><%= @holding.chill_message %></p>
+        <p>XXXXXXXX</p>
+        <p>XXXXXXXX</p>
       </div>
       <div class="col-sm-12" id="chill_message">
         <p><%= @holding.chill_message %></p>
       </div>
     </div>
+    <div>
+      <%= react_component 'HoldingDataList', { holding: @holding } %>
+    </div>
   </div>
-</div
-
-<ul>
-  <li>Previous Closing Price: $<%= @holding.price_close %></li>
-  <li>Dividend Yield: <%= @holding.div_yield %>%</li>
-  <li>12 Month Target Price: $<%= @holding.year_target %></li>
-  <li>52 Week High: $<%= @holding.year_high %></li>
-  <li>52 Week Low: $<%= @holding.year_low %></li>
-  <li>Market Capitalization: $<%= @holding.market_cap %> B</li>
-  <li>Average Daily Volume: <%= @holding.avg_volume %></li>
-  <li>Current Year EPS Estimate: $<%= @holding.eps_current %></li>
-  <li>Next Year EPS Estimate: $<%= @holding.eps_next %></li>
-  <li>Short Ratio: <%= @holding.short_ratio %>%</li>
-<ul>
+</div>

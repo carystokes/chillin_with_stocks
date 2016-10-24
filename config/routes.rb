@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :portfolios, only: [:index, :show, :new, :create, :destroy] do
+  resources :portfolios, only: [:index, :show, :new, :create, :update, :destroy] do
     resources :holdings, only: [:index, :create]
   end
 

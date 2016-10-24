@@ -40,12 +40,33 @@ class PortfoliosController < ApplicationController
   end
 
   def update
-    @portfolio = Portfolio.create(portfolio_params)
-    if @portfolio.update(portfolio_params)
-      redirect_to @portfolio, notice: 'Portfolio was successfully updated.'
+    if params.portfolio_grade
+      @portfolio = Portfolio.find(:portfolio_id)
+      holdings = @portfolio.holdings
+      grades = get_portfolio_grade(holdings)
+      total_value = @portfolio.cash
+      grades[:industry_concentration_hash].values.each do |value|
+        total_value += value
+      end
+      penalty_points = 0
+      grades[:industry_concentration_hash].values.each do |value|
+        if value / total_value > 0.2
+          penalty_points += value / total_value * 30
+        end
+      end
+      stock_picking_points = get_stock_points(holdings) / total_value
+      @portfolio.portfolio_chill_points = grades[0] + grades[1] - penalty_points + stock_picking_points
+      chill = get_chill_color(@portfolio.portfolio_chill_points)
+      @portfolio.portfolio_chill_color = chill[0]
+      @portfolio.portfolio_chill_message = chill[1]
+      redirect_to @portfolio
     else
-      render :new, notice: 'Portfolio was not updated.'
-    end
+      @portfolio = Portfolio.create(portfolio_params)
+      if @portfolio.update(portfolio_params)
+        redirect_to @portfolio, notice: 'Portfolio was successfully updated.'
+      else
+        render :new, notice: 'Portfolio was not updated.'
+      end
   end
 
   def destroy
@@ -57,6 +78,72 @@ class PortfoliosController < ApplicationController
   private
     def set_portfolio
       @portfolio = Portfolio.find(params[:id])
+    end
+
+    def get_portfolio_grade(holdings)
+      concentration_grade = get_concentration(holdings)
+      diversification_grade = get_diversification(holdings)
+      industry_concentration_hash = get_industry_concentration(holdings)
+      return [concentration_grade, diversification_grade, industry_concentration_hash]
+    end
+
+    def get_concentration(holdings)
+      num_stocks = holdings.length
+      if num_stocks <= 4
+        return 0
+      elsif num_stocks <= 8
+        return 5
+      elsif num_stocks <=20
+        return 10
+      else
+        return 5
+      end
+    end
+
+    def get_diversification(holdings)
+      div_holdings = []
+      holdings.each do |holding|
+        if !div_holdings.member?(holding.industry)
+          div_holdings << holding.industry
+        end
+      end
+      if div_holdings.length > 7
+        return 20
+      elsif div_holdings.keys.length > 3
+        return 10
+      else
+        return 0
+      end
+    end
+
+    def get_industry_concentration(holdings)
+      industry_holdings = {}
+      holdings.each do |holding|
+        if div_holdings.member?(holding.industry)
+          div_holdings[holding.industry] += (holding.number_shares * holding.price_close)
+        else
+          div_holdings[holding.industry] = (holding.number_shares * holding.price_close)
+        end
+      end
+      div_holdings
+    end
+
+    def get_stock_point_array(holdings)
+      stock_points = 0
+      holdings.each do |holding|
+        stock_points += holding.number_shares * holding.price_close * holding.chill_points
+      end
+      stock_points
+    end
+
+    def get_chill_color(points)
+      if points >= 75
+        return ['green', 'is CHILLIN!!']
+      elsif points >= 50
+        return ['yellow', 'might be chillin.']
+      else
+        return ['red', 'is NOT chillin!']
+      end
     end
 
     def portfolio_params

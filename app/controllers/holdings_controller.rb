@@ -10,7 +10,6 @@ class HoldingsController < ApplicationController
     holding = Holding.new(holding_params)
     holding.portfolio = @portfolio
     @holding = get_holding_data(holding)
-    binding.pry
 
     if @holding.save
       flash[:notice] = 'Holding created successfully'
@@ -51,15 +50,26 @@ class HoldingsController < ApplicationController
   end
 
   def update
-    holding = Holding.find(params[:id])
-    @holding = get_holding_data(holding)
-
-    if @holding.save
-      flash[:notice] = 'Holding created successfully'
+    if params[:portfolio_all]
+      portfolio = Portfolio.find(params[:portfolio_id])
+      holdings = portfolio.holdings
+      holdings.each do |holding|
+        new_holding = holding
+        new_holding = get_holding_data(holding)
+        holding = new_holding
+      end
+      redirect_to portfolio
     else
-      flash[:notice] = @holding.errors.full_messages.join(', ')
+      holding = Holding.find(params[:id])
+      @holding = get_holding_data(holding)
+
+      if @holding.save
+        flash[:notice] = 'Holding updated successfully'
+      else
+        flash[:notice] = @holding.errors.full_messages.join(', ')
+      end
+      redirect_to @holding
     end
-    redirect_to @portfolio
   end
 
   def destroy

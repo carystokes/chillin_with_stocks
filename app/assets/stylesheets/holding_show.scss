@@ -2,10 +2,23 @@
   font-weight: bold;
 }
 #holding-show-title {
-  text-align: center;
-  color: #3775DD;
+  color: black;
   margin-top: 0px;
+  margin-left: 40px;
 }
 #chill_message {
   text-align: center;
+}
+#holding-data {
+  list-style: none;
+}
+#show-data {
+  display: block;
+  margin: auto;
+}
+#holding-data {
+  margin-left: 30px;
+}
+#chillin_symbol {
+  margin-top: -18px;
 }

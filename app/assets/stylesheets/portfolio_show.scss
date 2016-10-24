@@ -3,27 +3,68 @@ table {
   margin: auto;
 }
 #portfolio-show-table {
-  border: 3px solid gray;
   display: flex;
   margin: auto;
   th, td {
-    border: 1px solid black;
+    border: 1px solid gray;
     padding: 5px;
   }
 }
-h1 {
+#portfolio_title_show {
   text-align: center;
-  color: green;
+  margin-top: 0;
 }
 #industry {
   width: 16em;
+  display: inline-block;
+}
+#industry-label {
+  margin-left: 27px;
+  margin-right: 30px;
 }
 .new_holding {
-  display: block;
+  display: inline-block;
 }
 #add-holding-form {
   display: block;
 }
 .table-number {
   text-align: right;
+}
+#addStock {
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background-color: lightblue;
+  width: 120px;
+}
+#addStockModal {
+  width: 360px;
+  margin: auto;
+}
+.modal-header {
+  background-color: #3775dd;
+  color: white;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.portfolio-button {
+  background-color: #ADD8E6;
+  color: #337ab7;
+  display:block;
+  margin: auto;
+  width: 118px;
+  box-shadow: none;
+  border-radius: 5px;
+  border: none;
+  height: 35px;
+}
+#add-button {
+  width: 75px;
+  background-color: #3775dd;
+  color: white;
+}
+#modal-label-1, #modal-label-2, #modal-label-3 {
+  margin-top: -15px;
 }

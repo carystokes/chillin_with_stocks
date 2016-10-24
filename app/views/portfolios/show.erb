@@ -1,4 +1,4 @@
-<h1><%= @portfolio.title %></h1>
+<h1 id="portfolio_title_show"><%= @portfolio.title %></h1>
 
 <div>
   <%= react_component 'Portfolio', { data: @portfolio.holdings, portfolio: @portfolio } %>
@@ -7,3 +7,5 @@
 <div>
   <%= react_component 'AddStockForm', {portfolio_id: @portfolio.id} %>
 </div>
+
+<a data-toggle="modal" href="#addStockModal" class="btn" id="addStock">Add Holding</a>

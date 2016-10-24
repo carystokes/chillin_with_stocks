@@ -13,7 +13,7 @@ class Holding extends React.Component {
           <tr>
             <td>Price Performance</td>
             <td className="table-number">{performance.price_perf}</td>
-            <td className="table-number">10</td>
+            <td className="table-number">15</td>
           </tr>
           <tr>
             <td>Price to Earnings (PE)</td>
