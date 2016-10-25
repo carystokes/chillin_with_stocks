@@ -30,7 +30,7 @@ class HoldingDataList extends React.Component {
           <li>12 Month Target Price: ${ holding.year_target }</li>
           <li>52 Week High: ${ holding.year_high }</li>
           <li>52 Week Low: ${ holding.year_low }</li>
-          <li>Market Capitalization: ${ holding.market_cap } B</li>
+          <li>Market Capitalization: ${ holding.market_cap } </li>
           <li>Average Daily Volume: { holding.avg_volume }</li>
           <li>Current Year EPS Estimate: ${ holding.eps_current }</li>
           <li>Next Year EPS Estimate: ${ holding.eps_next }</li>

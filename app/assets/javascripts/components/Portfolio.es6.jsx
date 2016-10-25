@@ -15,7 +15,7 @@ class HoldingsRow extends React.Component {
         <td className="table-number">${value}</td>
         <td className="table-number">${holding_delta}</td>
         <td>
-          <form className="button_to" method="post" action="#">
+          <form className="button_to" method="get" action="symbol_url">
             <input type="hidden" name="_method" value="edit" />
             <input data-confirm="You sure?" type="submit" value="Edit" />
             <input type="hidden" />
@@ -92,21 +92,19 @@ class Portfolio extends React.Component {
             </tr>
           </tbody>
         </table>
-        <div>
-          <form className="button_to" method="post" action="/holdings/1" portfolio_all="true">
-            <input type="hidden" name="_method" value="patch" />
-            <input data-confirm="You sure?" type="submit" value="Update Data" className="portfolio-button" />
-            <input type="hidden" />
-            <input type="hidden" name="portfolio_all" value="true" />
-            <input type="hidden" name="portfolio_id" value={this.props.portfolio.id} />
-          </form>
-          <form className="button_to" method="update" action="update_url" portfolio_grade="true">
-            <input type="hidden" name="_method" value="patch" />
-            <input data-confirm="You sure?" type="submit" value="Grade Portfolio" className="portfolio-button" />
-            <input type="hidden" />
-            <input type="hidden" name="portfolio_grade" value="true" />
-            <input type="hidden" name="portfolio_id" value={this.props.portfolio.id} />
-          </form>
+        <div className="row">
+          <AddStockForm portfolio_id={this.props.portfolio.id}/>
+          <div className="col-sm-push-3 col-sm-2">
+            <form className="button_to" method="post" action="/holdings/1">
+              <input type="hidden" name="_method" value="patch" />
+              <input data-confirm="You sure?" type="submit" value="Update Data" className="portfolio-button" />
+              <input type="hidden" />
+              <input type="hidden" name="portfolio_all" value="true" />
+            </form>
+          </div>
+          <div className="col-sm-push-5 col-sm-2">
+            <a data-toggle="modal" href="#addStockModal" className="btn" id="addStock">Add Holding</a>
+          </div>
         </div>
       </div>
     );

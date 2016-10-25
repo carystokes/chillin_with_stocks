@@ -1,11 +1,28 @@
 <h1 id="portfolio_title_show"><%= @portfolio.title %></h1>
 
-<div>
+<div id="portfolio-table-group">
   <%= react_component 'Portfolio', { data: @portfolio.holdings, portfolio: @portfolio } %>
 </div>
 
-<div>
-  <%= react_component 'AddStockForm', {portfolio_id: @portfolio.id} %>
+<div class="row" id="portfolio-chill-group">
+  <div class="col-xs-12 col-sm-6">
+    <h2 id="portfolio-grade-title">Chill Points</h2>
+    <div>
+      <%= react_component 'PortfolioChillTable', { portfolio: @portfolio, performance: @performance } %>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <div class="row">
+      <div class="col-sm-12" id="chillin_symbol">
+        <h2><%= @portfolio.title %></h2>
+      </div>
+      <div class="col-sm-4 col-sm-push-4 <%= @portfolio.portfolio_chill_color %>" id="portfolio-chill-box">
+        <p>XXXXXXXX</p>
+        <p>XXXXXXXX</p>
+      </div>
+      <div class="col-sm-12" id="portfolio_chill_message">
+        <p><%= @portfolio.portfolio_chill_message %></p>
+      </div>
+    </div>
+  </div>
 </div>
-
-<a data-toggle="modal" href="#addStockModal" class="btn" id="addStock">Add Holding</a>

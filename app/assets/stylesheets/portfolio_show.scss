@@ -50,10 +50,11 @@ table {
   padding-right: 100px;
 }
 .portfolio-button {
-  background-color: #ADD8E6;
+  background-color: white;
   color: #337ab7;
-  display:block;
+  display: inline-block;
   margin: auto;
+  margin-top: 0px;
   width: 118px;
   box-shadow: none;
   border-radius: 5px;
@@ -67,4 +68,22 @@ table {
 }
 #modal-label-1, #modal-label-2, #modal-label-3 {
   margin-top: -15px;
+}
+#addStock {
+  margin-top: 0px;
+  margin-left: 0px;
+  background-color: white;
+}
+#portfolio-chill-group {
+  border-top: 1px solid grey;
+  margin-top: -8px;
+  padding-top: 30px;
+}
+#portfolio_chill_message {
+  text-align: center;
+}
+#portfolio-grade-title {
+  text-align: center;
+  margin-top: 2px;
+  margin-bottom: 15px;
 }

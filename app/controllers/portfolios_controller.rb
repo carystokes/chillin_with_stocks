@@ -10,6 +10,27 @@ class PortfoliosController < ApplicationController
   def show
     @portfolio = set_portfolio
     @holdings = @portfolio.holdings
+    @performance = {}
+    grades = get_portfolio_grade(@holdings)
+    @performance[:portfolio_concentration] = grades[0]
+    @performance[:portfolio_diversification] = grades[1]
+    total_value = @portfolio.cash
+    grades[2].values.each do |value|
+      total_value += value
+    end
+    penalty_points = 0
+    grades[2].values.each do |value|
+      if value / total_value > 0.2
+        penalty_points += value / total_value * 30
+      end
+    end
+    @performance[:weighted_concentration] = penalty_points
+    stock_picking_points = get_stock_point_array(@holdings) / total_value
+    @performance[:stock_picking_points] = stock_picking_points
+    @portfolio.portfolio_chill_points = grades[0] + grades[1] - penalty_points + stock_picking_points
+    chill = get_chill_color(@portfolio.portfolio_chill_points)
+    @portfolio.portfolio_chill_color = chill[0]
+    @portfolio.portfolio_chill_message = chill[1]
     @holding = Holding.new
   end
 
@@ -40,33 +61,12 @@ class PortfoliosController < ApplicationController
   end
 
   def update
-    if params.portfolio_grade
-      @portfolio = Portfolio.find(:portfolio_id)
-      holdings = @portfolio.holdings
-      grades = get_portfolio_grade(holdings)
-      total_value = @portfolio.cash
-      grades[:industry_concentration_hash].values.each do |value|
-        total_value += value
-      end
-      penalty_points = 0
-      grades[:industry_concentration_hash].values.each do |value|
-        if value / total_value > 0.2
-          penalty_points += value / total_value * 30
-        end
-      end
-      stock_picking_points = get_stock_points(holdings) / total_value
-      @portfolio.portfolio_chill_points = grades[0] + grades[1] - penalty_points + stock_picking_points
-      chill = get_chill_color(@portfolio.portfolio_chill_points)
-      @portfolio.portfolio_chill_color = chill[0]
-      @portfolio.portfolio_chill_message = chill[1]
-      redirect_to @portfolio
+    @portfolio = Portfolio.create(portfolio_params)
+    if @portfolio.update(portfolio_params)
+      redirect_to @portfolio, notice: 'Portfolio was successfully updated.'
     else
-      @portfolio = Portfolio.create(portfolio_params)
-      if @portfolio.update(portfolio_params)
-        redirect_to @portfolio, notice: 'Portfolio was successfully updated.'
-      else
-        render :new, notice: 'Portfolio was not updated.'
-      end
+      render :new, notice: 'Portfolio was not updated.'
+    end
   end
 
   def destroy
@@ -109,7 +109,7 @@ class PortfoliosController < ApplicationController
       end
       if div_holdings.length > 7
         return 20
-      elsif div_holdings.keys.length > 3
+      elsif div_holdings.length > 3
         return 10
       else
         return 0
@@ -119,13 +119,13 @@ class PortfoliosController < ApplicationController
     def get_industry_concentration(holdings)
       industry_holdings = {}
       holdings.each do |holding|
-        if div_holdings.member?(holding.industry)
-          div_holdings[holding.industry] += (holding.number_shares * holding.price_close)
+        if industry_holdings.member?(holding.industry)
+          industry_holdings[holding.industry] += (holding.number_shares * holding.price_close)
         else
-          div_holdings[holding.industry] = (holding.number_shares * holding.price_close)
+          industry_holdings[holding.industry] = (holding.number_shares * holding.price_close)
         end
       end
-      div_holdings
+      industry_holdings
     end
 
     def get_stock_point_array(holdings)

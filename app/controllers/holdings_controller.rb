@@ -21,29 +21,7 @@ class HoldingsController < ApplicationController
 
   def show
     @holding = Holding.find(params[:id])
-    @holding.chill_points = 0
-    @performance = {}
-    @performance[:price_perf] = get_price_perf(@holding)
-    @performance[:price_to_earnings] = get_price_to_earnings(@holding)
-    @performance[:earnings_growth] = get_earnings_growth(@holding)
-    @performance[:div_yield] = get_div_yield(@holding)
-    @performance[:price_expectation] = get_price_expectation(@holding)
-    @performance[:market_cap] = get_market_cap(@holding)
-    @performance[:avg_volume] = get_avg_volume(@holding)
-    @performance[:short_ratio] = get_short_ratio(@holding)
-    @performance.values.each do |points|
-      @holding.chill_points += points
-    end
-    if @holding.chill_points >= 75
-      @holding[:chill_color] = 'green'
-      @holding[:chill_message] = "is CHILLIN!!"
-    elsif @holding.chill_points >= 50
-      @holding[:chill_color] = 'yellow'
-      @holding[:chill_message] = "might be CHILLIN."
-    else
-      @holding[:chill_color] = 'red'
-      @holding[:chill_message] = "is not CHILLIN!"
-    end
+    @performance = get_performance(@holding)
   end
 
   def edit
@@ -95,15 +73,31 @@ class HoldingsController < ApplicationController
       holding.year_target = data[2].to_f
       holding.year_high = data[3].to_f
       holding.year_low = data[4].to_f
+      holding.market_cap = data[5]
       magnitude = data[5].slice!(-1)
-      holding.market_cap = data[5].to_f
+      holding.market_cap_num = data[5].to_f
       if magnitude == "M"
-        holding.market_cap /= 1000
+        holding.market_cap_num /= 1000
       end
       holding.eps_current = data[6].to_f
       holding.eps_next = data[7].to_f
       holding.short_ratio = data[8].to_f
       holding.avg_volume = data[9].to_i
+      holding.chill_points = 0
+      performance = get_performance(holding)
+      performance.values.each do |points|
+        holding.chill_points += points
+      end
+      if holding.chill_points >= 75
+        holding[:chill_color] = 'green'
+        holding[:chill_message] = "is CHILLIN!!"
+      elsif holding.chill_points >= 50
+        holding[:chill_color] = 'yellow'
+        holding[:chill_message] = "might be CHILLIN."
+      else
+        holding[:chill_color] = 'red'
+        holding[:chill_message] = "is not CHILLIN!"
+      end
       holding
     end
 
@@ -175,7 +169,7 @@ class HoldingsController < ApplicationController
     end
 
     def get_market_cap(holding)
-      market_cap = holding.market_cap.to_f
+      market_cap = holding.market_cap_num
       if market_cap >= 5
         return 5
       elsif market_cap >= 0.1
@@ -207,19 +201,16 @@ class HoldingsController < ApplicationController
       end
     end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def get_performance(holding)
+      performance = {}
+      performance[:price_perf] = get_price_perf(holding)
+      performance[:price_to_earnings] = get_price_to_earnings(holding)
+      performance[:earnings_growth] = get_earnings_growth(holding)
+      performance[:div_yield] = get_div_yield(holding)
+      performance[:price_expectation] = get_price_expectation(holding)
+      performance[:market_cap] = get_market_cap(holding)
+      performance[:avg_volume] = get_avg_volume(holding)
+      performance[:short_ratio] = get_short_ratio(holding)
+      performance
+    end
 end
