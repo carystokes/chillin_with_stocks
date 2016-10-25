@@ -25,4 +25,58 @@
       </div>
     </div>
   </div>
+  <div class="col-xs-12 col-sm-6">
+    <div id="portfolio-stocks">
+      <h3>Portfolio Stocks</h3>
+    </div>
+    <div id="stockCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <% count = 0 %>
+        <% @portfolio.holdings.each do |holding| %>
+          <% if count == 0 %>
+            <li data-target="#stockCarousel" data-slide-to="<%= count %>" class="active"></li>
+          <% else %>
+            <li data-target="#stockCarousel" data-slide-to="<%= count %>"></li>
+          <% end %>
+          <% count += 1 %>
+        <% end %>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <% count = 0 %>
+        <% @portfolio.holdings.each do |holding| %>
+          <% if count == 0 %>
+            <div class="item active">
+          <% else %>
+            <div class="item">
+          <% end %>
+          <% count += 1 %>
+              <div class="row">
+                <div class="col-sm-12" id="portfolio-stock-symbol">
+                  <h4><%= holding.symbol %></h4>
+                </div>
+                <div class="col-sm-4 col-sm-push-4 <%= holding.chill_color %>" id="chill-box">
+                  <p>XXXXXX</p>
+                </div>
+                <div class="col-sm-12" id="portfolio-stock-message">
+                  <p><%= holding.chill_message %></p>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#stockCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#stockCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
 </div>

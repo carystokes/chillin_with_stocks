@@ -2,7 +2,6 @@ class PortfolioChillTable extends React.Component {
   render() {
     let portfolio = this.props.portfolio;
     let performance = this.props.performance;
-    debugger;
     return (
       <table className="table table-responsive table-striped" id="portfolio-grade-table">
         <tbody>
