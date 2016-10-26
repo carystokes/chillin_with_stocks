@@ -1,0 +1,50 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/6.3.0/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'heroku-postbuild' ]
+2 info using npm@3.10.7
+3 info using node@v6.3.0
+4 verbose run-script [ 'preheroku-postbuild',
+4 verbose run-script   'heroku-postbuild',
+4 verbose run-script   'postheroku-postbuild' ]
+5 info lifecycle chillin_with_stocks@1.0.0~preheroku-postbuild: chillin_with_stocks@1.0.0
+6 silly lifecycle chillin_with_stocks@1.0.0~preheroku-postbuild: no script for preheroku-postbuild, continuing
+7 info lifecycle chillin_with_stocks@1.0.0~heroku-postbuild: chillin_with_stocks@1.0.0
+8 verbose lifecycle chillin_with_stocks@1.0.0~heroku-postbuild: unsafe-perm in lifecycle true
+9 verbose lifecycle chillin_with_stocks@1.0.0~heroku-postbuild: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/carystokes/challenges/chillin_with_stocks/node_modules/.bin:/usr/local/Cellar/node/6.3.0/bin:/Users/carystokes/.gem/ruby/2.3.1/bin:/Users/carystokes/.rubies/ruby-2.3.1/lib/ruby/gems/2.3.0/bin:/Users/carystokes/.rubies/ruby-2.3.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/9.5/bin:/Users/carystokes/.rvm/bin
+10 verbose lifecycle chillin_with_stocks@1.0.0~heroku-postbuild: CWD: /Users/carystokes/challenges/chillin_with_stocks
+11 silly lifecycle chillin_with_stocks@1.0.0~heroku-postbuild: Args: [ '-c', 'NODE_ENV=production npm run webpack -- -p' ]
+12 silly lifecycle chillin_with_stocks@1.0.0~heroku-postbuild: Returned: code: 1  signal: null
+13 info lifecycle chillin_with_stocks@1.0.0~heroku-postbuild: Failed to exec heroku-postbuild script
+14 verbose stack Error: chillin_with_stocks@1.0.0 heroku-postbuild: `NODE_ENV=production npm run webpack -- -p`
+14 verbose stack Exit status 1
+14 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:255:16)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at EventEmitter.emit (events.js:191:7)
+14 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:40:14)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at ChildProcess.emit (events.js:191:7)
+14 verbose stack     at maybeClose (internal/child_process.js:852:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:215:5)
+15 verbose pkgid chillin_with_stocks@1.0.0
+16 verbose cwd /Users/carystokes/challenges/chillin_with_stocks
+17 error Darwin 15.6.0
+18 error argv "/usr/local/Cellar/node/6.3.0/bin/node" "/usr/local/bin/npm" "run" "heroku-postbuild"
+19 error node v6.3.0
+20 error npm  v3.10.7
+21 error code ELIFECYCLE
+22 error chillin_with_stocks@1.0.0 heroku-postbuild: `NODE_ENV=production npm run webpack -- -p`
+22 error Exit status 1
+23 error Failed at the chillin_with_stocks@1.0.0 heroku-postbuild script 'NODE_ENV=production npm run webpack -- -p'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the chillin_with_stocks package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     NODE_ENV=production npm run webpack -- -p
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs chillin_with_stocks
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls chillin_with_stocks
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]
