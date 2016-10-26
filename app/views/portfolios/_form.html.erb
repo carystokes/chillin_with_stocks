@@ -1,5 +1,7 @@
 <%= form_for @portfolio do |f| %>
-  <%= f.text_field :title, placeholder: 'Title' %>
-  <%= f.number_field :cash, placeholder: 'Cash' %>
+  <%= f.label :title, "Title" %>
+  <%= f.text_field :title %>
+  <%= f.label :cash, "Cash" %>
+  <%= f.number_field :cash %>
   <%= f.submit "Create Portfolio" %>
 <% end %>

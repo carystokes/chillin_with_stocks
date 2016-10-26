@@ -1,4 +1,6 @@
 class PortfoliosController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  
   def index
     @portfolios = []
     if !current_user.nil?
@@ -8,6 +10,12 @@ class PortfoliosController < ApplicationController
   end
 
   def show
+    @portfolio = set_portfolio
+    @holdings = @portfolio.holdings
+    @holding = Holding.new
+  end
+
+  def grade
     @portfolio = set_portfolio
     @holdings = @portfolio.holdings
     @performance = {}
@@ -31,7 +39,6 @@ class PortfoliosController < ApplicationController
     chill = get_chill_color(@portfolio.portfolio_chill_points)
     @portfolio.portfolio_chill_color = chill[0]
     @portfolio.portfolio_chill_message = chill[1]
-    @holding = Holding.new
   end
 
   def new

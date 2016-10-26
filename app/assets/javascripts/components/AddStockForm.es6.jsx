@@ -48,7 +48,7 @@ const AddStockForm = props => {
               <div className="form-group">
                 <label htmlFor="purchase_price" className="col-sm-2 control-label" id="modal-label-3">Purchase Price</label>
                 <div className="col-sm-10">
-                  <input type="number" name="holding[purchase_price]" defaultValue="0.0" />
+                  <input type="decimal" name="holding[purchase_price]" defaultValue="0.0" />
                 </div>
               </div>
               <div className="col-sm-2"></div>

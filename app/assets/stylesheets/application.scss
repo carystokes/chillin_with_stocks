@@ -2,6 +2,7 @@
 @import "portfolio_show";
 @import "holding_show";
 @import "portfolio_index";
+@import "grade";
 
 #body {
   background-color: lightgreen;
@@ -31,6 +32,7 @@ ul {
     font-family: Comic Sans MS;
     color: #6530E5;
     text-align: center;
+    margin-top: -15px;
   }
 }
 .sign-in {
