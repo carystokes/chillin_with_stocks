@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'portfolios#index'
+  root to: 'welcome#index'
+  resources :welcome, only: [:index]
 
   resources :users
 
