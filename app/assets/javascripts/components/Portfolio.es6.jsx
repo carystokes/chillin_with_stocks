@@ -3,6 +3,10 @@ class HoldingsRow extends React.Component {
     let value = parseFloat(this.props.holding.number_shares * this.props.holding.price_close).toFixed(2)
     let original_value = parseFloat(this.props.holding.number_shares * this.props.holding.purchase_price).toFixed(2)
     let holding_delta = parseFloat(value - original_value).toFixed(2)
+    let number_color = "green-num"
+    if (holding_delta < 0) {
+      number_color = "red-num"
+    }
     let symbol_url = "/holdings/" + this.props.holding.id
     let delete_url = symbol_url
     return (
@@ -13,7 +17,7 @@ class HoldingsRow extends React.Component {
         <td className="table-number">${original_value}</td>
         <td className="table-number">${parseFloat(this.props.holding.price_close).toFixed(2)}</td>
         <td className="table-number">${value}</td>
-        <td className="table-number">${holding_delta}</td>
+        <td className={number_color}>${holding_delta}</td>
         <td>
           <form className="button_to" method="post" action={delete_url}>
             <input type="hidden" name="_method" value="delete" />

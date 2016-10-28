@@ -1,17 +1,19 @@
-.portfolio-link {
-  font-size: 2em;
-  text-align: center;
-  display:block;
-  margin: auto;
-  color: #3277C5;
-}
-.add-portfolio {
-  display: block;
-  margin: auto;
-  color: #3277C5;
-}
 #index-title {
   text-align: center;
   display: block;
   margin: auto;
+}
+.portfolio-link {
+  font-size: 2em;
+  text-align: left;
+  display:block;
+  margin: auto;
+  color: #3277C5;
+}
+#add-portfolio {
+  clear: both;
+  display: block;
+  margin: auto;
+  padding-top: 30px;
+  color: #3277C5;
 }

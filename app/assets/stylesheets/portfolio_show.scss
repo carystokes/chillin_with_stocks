@@ -15,6 +15,7 @@ table {
 #portfolio_title_show {
   text-align: center;
   margin-top: 0;
+  padding-bottom: 15px;
 }
 #industry {
   width: 16em;
@@ -64,6 +65,14 @@ table {
 }
 .purple-link {
   color: #3277C5;
+}
+.green-num {
+  text-align: right;
+  color: green;
+}
+.red-num {
+  text-align: right;
+  color: red;
 }
 #add-button {
   width: 75px;

@@ -5,11 +5,11 @@
 <% else %>
   <ul>
     <% @portfolios.each do |portfolio| %>
-    <li> <%= link_to "#{portfolio[:title]}", portfolio_path(portfolio[:id]), class: "portfolio-link"  %> </li>
+    <li> <%= link_to "#{portfolio[:title]}", portfolio_path(portfolio[:id]), class: "col-sm-8 col-sm-push-4 portfolio-link"  %> </li>
     <% end %>
   </ul>
 <% end %>
 
-<div class="add-portfolio">
+<div id="add-portfolio">
   <%= link_to 'Add a Portfolio', new_portfolio_path %>
 </div>
