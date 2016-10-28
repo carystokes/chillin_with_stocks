@@ -5,7 +5,7 @@
 @import "grade";
 
 #body {
-  background-color: lightgreen;
+  background-color: white;
   padding-top: 0px;
 }
 #container {
@@ -25,15 +25,22 @@ ul {
   margin-top: 20px;
 }
 #top-bar {
-  background-color: lightblue;
+  background-color: white;
+  border-bottom: 1px solid grey;
   margin: 0px;
   padding: 0px;
+  a {
+    color: #3277C5;
+  }
   h1 {
-    font-family: Comic Sans MS;
-    color: #6530E5;
+    font-family: Arial;
+    color: #3277C5;
     text-align: center;
     margin-top: -15px;
   }
+}
+h1, h2, h3 {
+  color: #3277C5;
 }
 .sign-in {
   display: inline-block;

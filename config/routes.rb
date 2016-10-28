@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   resources :holdings, only: [:show, :edit, :update, :destroy]
 
   get '/portfolios/:id/grade', to: 'portfolios#grade'
-
+  get '/portfolios/:id/update', to: 'portfolios#update'
 end
