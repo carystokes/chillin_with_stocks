@@ -40,6 +40,10 @@ class Portfolio extends React.Component {
       total += parseFloat(this.props.data[i].number_shares * this.props.data[i].price_close);
       delta += (this.props.data[i].price_close - this.props.data[i].purchase_price) * this.props.data[i].number_shares;
     }
+    let total_color = "green-num"
+    if (delta < 0) {
+      total_color = "red-num"
+    }
     let delete_url = "/portfolios/" + this.props.portfolio.id;
     let grade_url =  delete_url + "/grade"
     let update_url = delete_url + "/update";
@@ -81,7 +85,7 @@ class Portfolio extends React.Component {
               <td> </td>
               <td> </td>
               <td className="table-number" >${parseFloat(total).toFixed(2)}</td>
-              <td className="table-number">${parseFloat(delta).toFixed(2)}</td>
+              <td className={total_color}>${parseFloat(delta).toFixed(2)}</td>
               <td> </td>
             </tr>
           </tbody>
