@@ -1,6 +1,7 @@
 require 'net/http'
 require 'httparty'
 require 'json'
+require 'pry'
 
 class HoldingsController < ApplicationController
   skip_before_action :verify_authenticity_token
@@ -11,7 +12,8 @@ class HoldingsController < ApplicationController
     holding = Holding.new(holding_params)
     holding.portfolio = @portfolio
     @holding = get_holding_data(holding)
-
+    cost = @holding.number_shares * @holding.purchase_price
+    @portfolio.update_column(:cash, @portfolio.cash - cost)
     if @holding.save
       flash[:notice] = 'Holding created successfully'
     else
@@ -33,9 +35,7 @@ class HoldingsController < ApplicationController
       portfolio = Portfolio.find(params[:portfolio_id])
       holdings = portfolio.holdings
       holdings.each do |holding|
-        new_holding = holding
-        new_holding = get_holding_data(holding)
-        holding = new_holding
+        holding = get_holding_data(holding)
       end
       redirect_to portfolio
     else
