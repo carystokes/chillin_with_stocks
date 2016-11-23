@@ -94,7 +94,8 @@ class Portfolio extends React.Component {
           <div id="grade-portfolio-link">
             <a href={grade_url} className="purple-link">Grade this portfolio</a>
           </div>
-          <AddStockForm portfolio_id={this.props.portfolio.id}/>
+          <AddStockForm portfolio_id={this.props.portfolio.id} />
+          <SellStockForm portfolio={this.props.portfolio} />
           <div>
             <form className="button_to" method="patch" action={update_url}>
               <input type="hidden" name="_method" value="patch" />
@@ -104,7 +105,10 @@ class Portfolio extends React.Component {
             </form>
           </div>
           <div>
-            <a data-toggle="modal" href="#addStockModal" className="btn purple-link" id="addStock">Add Holding</a>
+            <a data-toggle="modal" href="#addStockModal" className="btn purple-link" id="addStock">Buy Stock</a>
+          </div>
+          <div>
+            <a data-toggle="modal" href="#sellStockModal" className="btn purple-link" id="sellStock">Sell Stock</a>
           </div>
           <div>
             <form className="button_to" method="post" action={delete_url}>

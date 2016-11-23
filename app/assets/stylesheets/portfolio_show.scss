@@ -1,15 +1,14 @@
-table {
-  display: inline-block;
-  margin: auto;
-}
 #portfolio-show-table {
-  display: flex;
+  display: inline-table;
   margin: auto;
   th, td {
     border: 1px solid gray;
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
+  }
+  th {
+    text-align: center;
   }
 }
 #portfolio_title_show {
@@ -43,6 +42,10 @@ table {
   width: 120px;
 }
 #addStockModal {
+  width: 360px;
+  margin: auto;
+}
+#sellStockModal {
   width: 360px;
   margin: auto;
 }
