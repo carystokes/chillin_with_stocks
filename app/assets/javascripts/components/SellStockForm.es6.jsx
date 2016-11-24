@@ -14,7 +14,8 @@ const SellStockForm = props => {
               <div className="form-group">
                 <label htmlFor="portfolio" className="col-sm-2 control-label" id="modal-label-1">Portfolio</label>
                 <div className="col-sm-10">
-                  <input type="text" name="portfolio" value={ portfolio.title }/>
+                  <input type="text" name="portfolio" value={ portfolio.title } />
+                  <input type="number" name="portfolio_id" className="hidden" value={portfolio.id} />
                 </div>
               </div>
               <div className="form-group">
