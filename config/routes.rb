@@ -14,4 +14,5 @@ Rails.application.routes.draw do
 
   get '/portfolios/:id/grade', to: 'portfolios#grade'
   get '/portfolios/:id/update', to: 'portfolios#update'
+  post '/holdings/sell', to: 'holdings#sell'
 end
