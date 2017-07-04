@@ -6,6 +6,7 @@ feature 'User creates portfolio' do
     scenario 'User can navigate to a page to create a new portfolio' do
       visit root_path
       user_sign_in(user)
+      click_link 'My Portfolios'
 
       click_link 'Add a Portfolio'
 

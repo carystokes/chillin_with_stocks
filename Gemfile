@@ -1,12 +1,12 @@
 source 'https://rubygems.org/'
 
-gem 'rails', '4.2.5'
-gem 'pg', '~> 0.15'
-gem 'sass-rails', '~> 5.0'
+gem 'rails'
+gem 'pg'
+gem 'sass-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'devise'
-gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
+gem 'carrierwave'
 gem 'react-rails'
 gem 'mini_magick'
 gem 'fog-aws'
@@ -17,7 +17,7 @@ gem 'httparty'
 group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
-  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-rails'
   gem 'pry'
   gem 'pry-rails'
   gem 'shoulda'
@@ -32,4 +32,4 @@ group :production do
   gem 'rails_12factor'
 end
 
-ruby '2.3.1'
+ruby '2.4.1'

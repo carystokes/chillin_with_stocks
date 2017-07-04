@@ -7,8 +7,8 @@ feature 'sign up' do
       visit new_user_registration_path
       fill_in 'First name', with: 'Jon'
       fill_in 'Last name', with: 'Smith'
-      fill_in 'Email', with: 'user@example.com'
-      fill_in 'Password', with: 'password'
+      fill_in 'user[email]', with: 'user@example.com'
+      fill_in 'user[password]', with: 'password'
       fill_in 'Password confirmation', with: 'password'
       click_button 'Sign up'
       expect(page).to have_content('Welcome! You can now chill with stocks.')
